@@ -152,57 +152,53 @@ class APIGoalController extends Controller
         ], 200);
     }
 
-    // public function addContribution(Request $request, UserGoal $goal)
-    // {
-    //     if ($request->user()->id !== $goal->user_id) {
-    //         return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
-    //     }
-
-    //     $validator = Validator::make($request->all(), [
-    //         'amount' => 'required|numeric|min:0.01',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return response()->json($validator->errors(), 422);
-    //     }
-
-    //     // Add the contribution record
-    //     $goal->contributions()->create(['amount' => $request->amount]);
-
-    //     // Update the goal's current amount
-    //     $goal->increment('current_amount', $request->amount);
-
-    //     return response()->json(['status' => 'success', 'data' => $goal->fresh()]);
-    // }
-
     public function addContribution(Request $request, UserGoal $goal)
-{
-    // ... (Authorization and validation)
-    if ($request->user()->id !== $goal->user_id) {
-        return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
+    {
+        if ($request->user()->id !== $goal->user_id) {
+            return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric|min:0.01',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $goal->contributions()->create(['amount' => $request->amount]);
+
+        $goal->current_amount += $request->amount;
+        $goal->save();
+
+        $goal->refresh();
+
+        return response()->json(['status' => 'success', 'data' => $goal]);
     }
 
-    $validator = Validator::make($request->all(), [
-        'amount' => 'required|numeric|min:0.01',
-    ]);
 
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 422);
+    public function goalDelete(Request $request, UserGoal $goal)
+    {
+        // 1. Authorize the action
+        // Ensure the authenticated user is the one who owns this goal.
+        if ($request->user()->id !== $goal->user_id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized action.',
+            ], 403);
+        }
+
+        // 2. Delete the goal
+        $goal->delete();
+
+        // 3. Return a clear success message
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Goal deleted successfully.',
+        ], 200);
     }
 
-    // 1. Create the contribution record
-    $goal->contributions()->create(['amount' => $request->amount]);
 
-    // 2. Manually update the current_amount and save the model
-    $goal->current_amount += $request->amount;
-    $goal->save();
-
-    // 3. ✅ Refresh the model from the database to get the latest data
-    $goal->refresh();
-
-    // 4. Return the updated goal
-    return response()->json(['status' => 'success', 'data' => $goal]);
-}
 
 
 }
