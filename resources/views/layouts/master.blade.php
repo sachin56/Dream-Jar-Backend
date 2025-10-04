@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        @yield('title') - CIABOC
+        @yield('title') - DREAM JAR
     </title>
     <meta name="description" content="Analytics Dashboard">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

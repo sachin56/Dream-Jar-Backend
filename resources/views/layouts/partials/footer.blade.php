@@ -3,7 +3,7 @@
 <!-- BEGIN Page Footer -->
 <footer class="page-footer" role="contentinfo">
     <div class="d-flex align-items-center flex-1 text-muted">
-        <span class="hidden-md-down fw-700">{{ date('Y') }} © CIABOC &nbsp;<a href='https://www.themesbrand.com' class='text-primary fw-500' title='themesbrand.com' target='_blank'></a></span>
+        <span class="hidden-md-down fw-700">{{ date('Y') }} © DREAM JAR &nbsp;<a href='https://www.themesbrand.com' class='text-primary fw-500' title='themesbrand.com' target='_blank'></a></span>
     </div>
     <div>
         {{-- <ul class="list-table m-0">

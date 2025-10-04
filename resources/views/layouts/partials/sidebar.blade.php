@@ -24,6 +24,22 @@ $menuArray = [
                     "i18n"      => "nav.pages_search_results"
                 ]
             ]
+        ],
+        [
+            "title"     => "Customer Manegment",
+            "filterTag" => "pages",
+            "icon"      => "fal fa-plus-circle",
+            "i18n"      => "nav.pages",
+            "child"     => [
+                [
+                    // Call the Laravel route helper directly in PHP
+                    "link"      => route('customer.index'), 
+                    "title"     => "Customer",
+                    "filterTag" => "pages search results",
+                    "icon"      => "",
+                    "i18n"      => "nav.pages_search_results"
+                ],
+            ]
         ]
     ]
 ];
@@ -43,8 +59,7 @@ $menuJson = json_encode($menuArray);
               <div class="page-logo">
                   <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
                       <img src="{{ URL::asset('assets/img/logo.png') }}" alt="SmartAdmin Laravel" aria-roledescription="logo">
-                      <span class="page-logo-text mr-1">SmartAdmin Laravel</span>
-                      <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2">Laravel 10.15</span>
+                      <span class="page-logo-text mr-1">DREAM JAR</span>
                       <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
                   </a>
               </div>

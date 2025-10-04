@@ -13,8 +13,8 @@ $profileJson = '{ "profileList":[{ "isModal" : "true", "dataTarget":".js-modal-s
     <div class="page-logo">
         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative"
             data-toggle="modal" data-target="#modal-shortcut">
-            <img src="{{ url(env('ASSETS_PATH').'/img/logo.png') }}" alt="CIABOC" aria-roledescription="logo">
-            <span class="mr-1 page-logo-text">CIABOC</span>
+            <img src="{{ url(env('ASSETS_PATH').'/img/logo.png') }}" alt="DREAM JAR" aria-roledescription="logo">
+            <span class="mr-1 page-logo-text">DREAM JAR</span>
             <span class="mr-2 text-white opacity-50 position-absolute small pos-top pos-right mt-n2"></span>
             <i class="ml-1 fal fa-angle-down d-inline-block fs-lg color-primary-300"></i>
         </a>

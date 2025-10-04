@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IconControllerController;
+use App\Http\Controllers\Admin\CustomerManegmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +45,14 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/get-icon', [IconControllerController::class, 'getAjaxCategoryData'])->name('get-icon');
             Route::put('/update/{id}', [IconControllerController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [IconControllerController::class, 'destroy'])->name('delete');
+        });
+
+        Route::group([
+            'prefix' => 'customer',
+            'as' => 'customer.'
+        ], function () {
+            Route::get('/', [CustomerManegmentController::class, 'index'])->name('index');
+            Route::get('/get-customer', [CustomerManegmentController::class, 'getAjaxCustomerData'])->name('get-customer');
         });
     });
 });
